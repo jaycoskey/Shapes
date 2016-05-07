@@ -37,6 +37,9 @@ class Point(object):
 #       center += point
 #   center /= points.Length
 def average(points) -> Point:
+    """
+    :rtype: Point
+    """
     num = len(points)
     sum_x = sum(map(lambda p: p.x, points))
     sum_y = sum(map(lambda p: p.y, points))
@@ -57,11 +60,11 @@ class Cylinder(object):
         self.r = r
 
 
-# class Torus(object):
-#     def __init__(self, points, minor_radius):
-#         self.center = average(points)
-#         self.major_radius = average(map(self.center.distance_from, points))
-#         self.minor_radius = minor_radius
+class Torus(object):
+    def __init__(self, minor_radius, points):
+        self.center = average(points)
+        self.minor_radius = minor_radius
+        self.major_radius = average(map(self.center.distance_from, points))
 
 
 class Triangle(object):
