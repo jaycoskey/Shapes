@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright by Jay Coskey.  All rights reserved. -->
+<!--
+  A self-contained cross-platform visualization of the star graph of S_4.
+  This is the Cayley graph Gamma(G, S), where G=S_4 and S={(12),(13),14)}.
+  Cayley graphs are interesting options for use in interconnection networks. 
+  Letting S consist of nearest-neighbor swaps yields a different graph.
+  For other visualizations of S_4 & S_5, see On the Genus of the Star Graph,
+    by Sarmad Abbasi, available at http://citeseer.ist.psu.edu/45499.html
+    and http://groupexplorer.sourceforge.net/symmetric-groups.html,
+    and http://www.math.ubc.ca/~holroyd/cayley/s5.html.
+-->
+
+<svg
+  id="starGraph"
+  version="1.1"
+  baseProfile="full"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:ev="http://www.w3.org/2001/xml-events"
+  width="100%"
+  height="100%"
+  viewBox="-2.75 -2.75 5.5 5.5"
+  onmouseover="highlight(evt);"
+  onmouseout="unhighlight(evt);"
+>
+
+<title id="title4">The Star Graph of S_4 and its 12 Hexagons</title>
+
+<!--
+    0   1               2   3               4   5         6   7
+  6                         * (-1/2, 3r3/2) * (1/2, 3r3/2)
+  5     * (-2,r3)       * (-1,r3)               * (1,r3)  * (2,r3)
+  4 * (-2.5,r3/2)           * (-1/2,r3/2)   * (1/2,r3/2)      * (2.5,r3/2)
+  3     * (-2,0)        * (-1,0)                * (1,0)   * (2,0)
+  2 * (-2.5,-r3/2)          * (-1/2,-r3/2)  * (1/2,-r3/2)     * (2.5,-r3/2)
+  1     * (-2,-r3)      * (-1,-r3)              * (1,-r3) * (2,-r3)
+  0                         * (-1/2,-3r3/2) * (1/2, -3r3)
+        3*r3/2 = 2.598076211
+        r3     = 1.732050808
+        r3/2   = 0.866025404
+-->
+
+  <g>
+    <!-- Central hexagon -->
+    <polyline id="hexagon" 
+        points="1 0 0.5 0.866 -0.5 0.866 -1 0 -0.5 -0.866 0.5 -0.866 1 0"
+        style="stroke:gray;stroke-width:0.1;fill:none" />
+
+    <!-- Spokes -->
+    <line id="l5363" x1="1"    y1="0"      x2="2"    y2="0"
+        stroke="gray" stroke-width="0.1" />
+    <line id="l4455" x1="0.5"  y1="0.866"  x2="1"    y2="1.732"
+        stroke="gray" stroke-width="0.1" />
+    <line id="l2534" x1="-1"   y1="1.732"  x2="-0.5" y2="0.866"  
+        stroke="gray" stroke-width="0.1" />
+    <line id="l1323" x1="-2"   y1="0"      x2="-1"   y2="0"    
+        stroke="gray" stroke-width="0.1" />
+    <line id="l2132" x1="-1"   y1="-1.732" x2="-0.5" y2="-0.866" 
+        stroke="gray" stroke-width="0.1" />
+    <line id="l4251" x1="0.5"  y1="-0.866" x2="1"    y2="-1.732"
+        stroke="gray" stroke-width="0.1" />
+
+    <!-- Outer hexagon borders -->
+    <line id="l0211" x1="-2.5" y1="-0.866" x2="-2"   y2="-1.732"
+        stroke="gray" stroke-width="0.1" />
+    <line id="l3040" x1="-0.5" y1="-2.598" x2="0.5"  y2="-2.598"
+        stroke="gray" stroke-width="0.1" />
+    <line id="l6172" x1="2"    y1="-1.732" x2="2.5"  y2="-0.866"
+        stroke="gray" stroke-width="0.1" />
+    <line id="l6574" x1="2"    y1="1.732"  x2="2.5"  y2="0.866" 
+        stroke="gray" stroke-width="0.1" />
+    <line id="l3646" x1="-0.5" y1="2.578"  x2="0.5"  y2="2.578"
+        stroke="gray" stroke-width="0.1" />
+    <line id="l0415" x1="-2.5" y1="0.866"  x2="-2"   y2="1.732"  
+        stroke="gray" stroke-width="0.1" />
+
+    <polyline id="p112130" points="-2 -1.732 -1 -1.732 -0.5 -2.598" 
+        stroke="gray" stroke-width="0.1" fill="none" />
+    <polyline id="p405161" points="0.5 -2.598 1 -1.732 2 -1.732"
+        stroke="gray" stroke-width="0.1" fill="none" />
+    <polyline id="p726374" points="2.5 -0.866 2 0 2.5 0.866" 
+        stroke="gray" stroke-width="0.1" fill="none" />
+    <polyline id="p465565" points="0.5 2.598 1 1.732 2 1.732"
+        stroke="gray" stroke-width="0.1" fill="none" />
+    <polyline id="p152536" points="-2 1.732 -1 1.732 -0.5 2.598"
+        stroke="gray" stroke-width="0.1" fill="none" />
+    <polyline id="p021304" points="-2.5 -0.866 -2 0 -2.5 0.866"
+        stroke="gray" stroke-width="0.1" fill="none" />
+
+    <path id="path0272" d="M -2.5 -0.866 Q 0 0 2.5 -0.866"
+        stroke="green" stroke-width="0.1" fill="none" />
+    <path id="path1146" d="M -2 -1.732   Q 0 0 0.5 2.578"
+        stroke="green" stroke-width="0.1" fill="none" />
+    <path id="path3065" d="M -0.5 -2.578 Q 0 0 2 1.732"
+        stroke="green" stroke-width="0.1" fill="none" />
+    <path id="path1540" d="M -2 1.732 Q 0 0 0.5 -2.578"
+        stroke="green" stroke-width="0.1" fill="none" />
+    <path id="path3661" d="M -0.5 2.578 Q 0 0 2 -1.732"
+        stroke="green" stroke-width="0.1" fill="none" />
+    <path id="path0474" d="M -2.5 0.866 Q 0 0 2.5 0.866"
+        stroke="green" stroke-width="0.1" fill="none" />
+
+    <!-- Vertices -->
+    <circle id="c02" r="0.1" cx="-2.5" cy="-0.866" fill="green" />
+    <circle id="c04" r="0.1" cx="-2.5" cy="0.866"  fill="green" />
+
+    <circle id="c11" r="0.1" cx="-2"   cy="-1.732" fill="green" />
+    <circle id="c13" r="0.1" cx="-2"   cy="0"      fill="gray" />
+    <circle id="c15" r="0.1" cx="-2"   cy="1.732"  fill="green" />
+
+    <circle id="c21" r="0.1" cx="-1"   cy="-1.732" fill="gray" />
+    <circle id="c23" r="0.1" cx="-1"   cy="0"      fill="gray" />
+    <circle id="c25" r="0.1" cx="-1"   cy="1.732"  fill="gray" />
+
+    <circle id="c30" r="0.1" cx="-0.5" cy="-2.598" fill="green" />
+    <circle id="c32" r="0.1" cx="-0.5" cy="-0.866" fill="gray" />
+    <circle id="c34" r="0.1" cx="-0.5" cy="0.866"  fill="gray" />
+    <circle id="c36" r="0.1" cx="-0.5" cy="2.598"  fill="green" />
+
+    <circle id="c40" r="0.1" cx="0.5"  cy="-2.598" fill="green" />
+    <circle id="c42" r="0.1" cx="0.5"  cy="-0.866" fill="gray" />
+    <circle id="c44" r="0.1" cx="0.5"  cy="0.866"  fill="gray" />
+    <circle id="c46" r="0.1" cx="0.5"  cy="2.598"  fill="green" />
+
+    <circle id="c51" r="0.1" cx="1"    cy="-1.732" fill="gray" />
+    <circle id="c53" r="0.1" cx="1"    cy="0"      fill="gray" />
+    <circle id="c55" r="0.1" cx="1"    cy="1.732"  fill="gray" />
+
+    <circle id="c61" r="0.1" cx="2"    cy="-1.732" fill="green" />
+    <circle id="c63" r="0.1" cx="2"    cy="0"      fill="gray" />
+    <circle id="c65" r="0.1" cx="2"    cy="1.732"  fill="green" />
+
+    <circle id="c72" r="0.1" cx="2.5"  cy="-0.866" fill="green" />
+    <circle id="c74" r="0.1" cx="2.5"  cy="0.866"  fill="green" />
+  </g>
+
+  <script type="text/javascript" language="JavaScript">
+  <![CDATA[
+
+  // TODO: Combine getXCoord() and getYCoord()
+
+  function getXCoord(doc, evt) {
+    var x = 0;
+    if (evt.pageX || evt.pageY) {
+      x = evt.pageX / window.innerWidth;   
+    } else if (evt.clientX || evt.clientY) {
+      x = evt.clientX / window.innerWidth;
+    }
+    return x - 0.5;
+  }
+
+  function getYCoord(doc, evt) {
+    var y = 0;
+    if (evt.pageY || evt.pageY) {
+      y = evt.pageY / window.innerHeight;
+    } else if (evt.clientX || evt.clientY) {
+      y = evt.clientY / window.innerHeight;
+    }
+    return y - 0.5;
+  }
+
+  // Highlight according to which warped hexagon is "selected" 
+  function highlight(evt) {
+    var doc = evt.target.ownerDocument;
+
+    // Get x & y position and calculate angle from center
+    var x = getXCoord(doc, evt); 
+    var y = getYCoord(doc, evt);
+    var slope = 0;
+    var m1 = 0.866 / 2.5;
+    var m2 = 1.732 / 2;
+    var m3 = 2.598 / 0.5;
+
+    x = getXCoord(doc, evt);
+    y = getYCoord(doc, evt);
+
+    if (x == 0) {
+      if (y <= 0) {
+        setColorOfUpwardTriangle(doc, "blue", "blue");
+      } else {
+        setColorOfDownwardTriangle(doc, "blue", "blue");
+      }
+      return;
+    } 
+
+    slope = y / x; 
+
+    // alert("DEBUG: x=" + x + "; y=" + y + "; y/x=" + slope);
+
+    if (y <= 0 && (slope <= -m3 || slope >= m3)) {
+      setColorOfUpwardTriangle(doc, "blue", "blue");
+    } else if (y >= 0 && (slope <= -m3 || slope >= m3)) {
+      setColorOfDownwardTriangle(doc, "blue", "blue");
+    } else if (slope >= -m3 && slope <= -m2) {
+      setColorOfRightTiltedLens(doc, "blue", "blue");
+    } else if (y <= 0 && (slope >= -m2 && slope <= -m1)) {
+      setColorOfDownwardTriangle(doc, "blue", "blue");
+    } else if (y >= 0 && (slope >= -m2 && slope <= -m1)) {
+      setColorOfUpwardTriangle(doc, "blue", "blue");
+    } else if (slope >= -m1 && slope <= m1) {
+      setColorOfHorizontalLens(doc, "blue", "blue");
+    } else if (y <= 0 && (slope >= m1 && slope <= m2)) {
+      setColorOfDownwardTriangle(doc, "blue", "blue");
+    } else if (y >= 0 && (slope >= m1 && slope <= m2)) {
+      setColorOfUpwardTriangle(doc, "blue", "blue");
+    } else if (slope >= m2 && slope <= m3) {
+      setColorOfLeftTiltedLens(doc, "blue", "blue");
+    } 
+  }
+  function unhighlight(evt) {
+    var doc = evt.target.ownerDocument;
+
+    // Colors elements multiple times, but easier maintenance
+    setColorOfDownwardTriangle(doc, "green", "gray");
+    setColorOfHorizontalLens(doc, "green", "gray");
+    setColorOfLeftTiltedLens(doc, "green", "gray");
+    setColorOfRightTiltedLens(doc, "green", "gray");
+    setColorOfUpwardTriangle(doc, "green", "gray");
+  }
+  function setColorOfDownwardTriangle(doc, c1, c2) {
+    doc.getElementById("path0272").setAttribute("stroke", c1);  
+    doc.getElementById("path1146").setAttribute("stroke", c1);  
+    doc.getElementById("path3661").setAttribute("stroke", c1);  
+    doc.getElementById("l0211").setAttribute("stroke", c2);  
+    doc.getElementById("l3646").setAttribute("stroke", c2);  
+    doc.getElementById("l6172").setAttribute("stroke", c2);  
+    doc.getElementById("c02").setAttribute("fill", c1);
+    doc.getElementById("c11").setAttribute("fill", c1);
+    doc.getElementById("c36").setAttribute("fill", c1);
+    doc.getElementById("c46").setAttribute("fill", c1);
+    doc.getElementById("c61").setAttribute("fill", c1);
+    doc.getElementById("c72").setAttribute("fill", c1);
+  }
+  function setColorOfLeftTiltedLens(doc, c1, c2) {
+    doc.getElementById("path1146").setAttribute("stroke", c1);  
+    doc.getElementById("path3065").setAttribute("stroke", c1);  
+    doc.getElementById("p112130").setAttribute("stroke", c2);  
+    doc.getElementById("p465565").setAttribute("stroke", c2);  
+    doc.getElementById("c11").setAttribute("fill", c1);
+    doc.getElementById("c21").setAttribute("fill", c2);
+    doc.getElementById("c30").setAttribute("fill", c1);
+    doc.getElementById("c46").setAttribute("fill", c1);
+    doc.getElementById("c55").setAttribute("fill", c2);
+    doc.getElementById("c65").setAttribute("fill", c1);
+  }
+  function setColorOfHorizontalLens(doc, c1, c2) {
+    doc.getElementById("path0272").setAttribute("stroke", c1);  
+    doc.getElementById("path0474").setAttribute("stroke", c1);  
+    doc.getElementById("p021304").setAttribute("stroke", c2);  
+    doc.getElementById("p726374").setAttribute("stroke", c2);  
+    doc.getElementById("c02").setAttribute("fill", c1);
+    doc.getElementById("c13").setAttribute("fill", c2);
+    doc.getElementById("c04").setAttribute("fill", c1);
+    doc.getElementById("c63").setAttribute("fill", c2);
+    doc.getElementById("c72").setAttribute("fill", c1);
+    doc.getElementById("c74").setAttribute("fill", c1);
+  }
+  function setColorOfRightTiltedLens(doc, c1, c2) {
+    doc.getElementById("path3661").setAttribute("stroke", c1);  
+    doc.getElementById("path1540").setAttribute("stroke", c1);  
+    doc.getElementById("p152536").setAttribute("stroke", c2);  
+    doc.getElementById("p405161").setAttribute("stroke", c2);  
+    doc.getElementById("c15").setAttribute("fill", c1);
+    doc.getElementById("c25").setAttribute("fill", c2);
+    doc.getElementById("c36").setAttribute("fill", c1);
+    doc.getElementById("c40").setAttribute("fill", c1);
+    doc.getElementById("c51").setAttribute("fill", c2);
+    doc.getElementById("c61").setAttribute("fill", c1);
+  }
+  function setColorOfUpwardTriangle(doc, c1, c2) {
+    doc.getElementById("path0474").setAttribute("stroke", c1);  
+    doc.getElementById("path1540").setAttribute("stroke", c1);  
+    doc.getElementById("path3065").setAttribute("stroke", c1);  
+    doc.getElementById("l0415").setAttribute("stroke", c2);
+    doc.getElementById("l3040").setAttribute("stroke", c2);
+    doc.getElementById("l6574").setAttribute("stroke", c2);
+    doc.getElementById("c04").setAttribute("fill", c1);
+    doc.getElementById("c15").setAttribute("fill", c1);
+    doc.getElementById("c30").setAttribute("fill", c1);
+    doc.getElementById("c40").setAttribute("fill", c1);
+    doc.getElementById("c65").setAttribute("fill", c1);
+    doc.getElementById("c74").setAttribute("fill", c1);
+  }
+  // ]]> 
+  </script>
+</svg>
