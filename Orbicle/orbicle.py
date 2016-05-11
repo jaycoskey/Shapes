@@ -27,9 +27,84 @@ class Orbicle(object):
         self.tori20 = []
 
     ########################################
+    # Add hexgrids
+    ########################################
+    def set_hexgrids(self):
+        self.hexgrid_verts = []
+        self.hexgrid_edges = []
+        # TODO: Refactor toward DRY
+        for face in icosa_faces:
+            a = face.a
+            b = face.b
+            c = face.c
+            triplet = (a, b, c)
+            # For each icosahedron fact, add 6 hexagons explicitly.
+            # The one hexagon in the center is added implicitly,
+            #     since it shares its edges with the surrounding hexagons.
+            # Identify the hexagons by the hexgrid coords of the vertex they surround.
+            #
+            # Centered around 5, 2, 2
+            wts_522 = ( weighted_triplet(triplet, 6, 2, 1)
+                      , weighted_triplet(triplet, 6, 1, 2)
+                      , weighted_triplet(triplet, 5, 1, 3)
+                      , weighted_triplet(triplet, 4, 2, 3)
+                      , weighted_triplet(triplet, 4, 3, 2)
+                      , weighted_triplet(triplet, 5, 3, 1)
+                      )
+
+            # Centered around 4, 1, 4
+            wts_414 = ( weighted_triplet(triplet, 5, 1, 3)
+                      , weighted_triplet(triplet, 5, 0, 4)
+                      , weighted_triplet(triplet, 4, 0, 5)
+                      , weighted_triplet(triplet, 3, 1, 5)
+                      , weighted_triplet(triplet, 3, 2, 4)
+                      , weighted_triplet(triplet, 4, 2, 3)
+                      )
+
+            # Centered around 2, 2, 5
+            wts_225 = (
+                      , weighted_triplet(triplet, 3, 2, 4)
+                      , weighted_triplet(triplet, 3, 1, 5)
+                      , weighted_triplet(triplet, 2, 1, 6)
+                      , weighted_triplet(triplet, 1, 2, 6)
+                      , weighted_triplet(triplet, 1, 3, 5)
+                      , weighted_triplet(triplet, 2, 3, 4)
+                      )
+
+            # Centered around 1, 4, 4
+            wts_144 = ( weighted_triplet(triplet, 2, 4, 3)
+                      , weighted_triplet(triplet, 2, 3, 4)
+                      , weighted_triplet(triplet, 1, 3, 5)
+                      , weighted_triplet(triplet, 0, 4, 5)
+                      , weighted_triplet(triplet, 0, 5, 4)
+                      , weighted_triplet(triplet, 1, 5, 3)
+                      )
+            
+            # Centered around 2, 5, 2
+            wts_252 = ( weighted_triplet(triplet, 3, 5, 1)
+                      , weighted_triplet(triplet, 3, 4, 2)
+                      , weighted_triplet(triplet, 2, 4, 3)
+                      , weighted_triplet(triplet, 1, 5, 3)
+                      , weighted_triplet(triplet, 1, 6, 2)
+                      , weighted_triplet(triplet, 2, 6, 1)
+                      )
+
+            # Centered around 4, 4, 1
+            wts_441 = ( weighted_triplet(triplet, 5, 4, 0)
+                      , weighted_triplet(triplet, 5, 3, 1)
+                      , weighted_triplet(triplet, 4, 3, 2)
+                      , weighted_triplet(triplet, 3, 4, 2)
+                      , weighted_triplet(triplet, 3, 5, 1)
+                      , weighted_triplet(triplet, 4, 5, 0)
+                      )
+            # De-dupe vertices.
+            # TODO: Add vertices in the weighted triplets
+            # TODO: Add edges connecting the weighted triplets
+
+    ########################################
     # Add icosahedral-vertex-centered tori
     ########################################
-    def setTori12(self):
+    def set_tori12(self):
         self.tori12 = [
             weighted_torus(center=px00, others=(p00z,p10z,p1y0,px10,p0y0))
             , weighted_torus(center=px01, others=(px11,p1y1,p10z,p00z,p0y1))
@@ -53,7 +128,7 @@ class Orbicle(object):
         return lambda points: Torus(self.minor_radius, points)
 
     # TODO: Refactor toward DRY
-    def setTori20(self):
+    def set_tori20(self):
         self.tori20 = []
 
         # Add torus centered around f1  = Face(px00, p10z, p00z)
@@ -281,54 +356,7 @@ def weighted_triplet(ps, w1, w2, w3):
 #     pipe_add(hv5, hv6)
 #     pipe_add(hv6, hv1)
 #
-# # TODO: Refactor toward DRY
-# for face in icosa_faces:
-#     a = face.p1
-#     b = face.p2
-#     c = face.p3
-#     triplet = (a, b, c)
-#     add_poly_cylinder(hexgrid_edges,	# Centered around 5, 2, 2
-#    	    weighted_triplet(triplet, 6, 2, 1),
-#    	    weighted_triplet(triplet, 6, 1, 2),
-#    	    weighted_triplet(triplet, 5, 1, 3),
-#    	    weighted_triplet(triplet, 4, 2, 3),
-#    	    weighted_triplet(triplet, 4, 3, 2),
-#    	    weighted_triplet(triplet, 5, 3, 1))
-#     add_poly_cylinder(hexgrid_edges,	# Centered around 4, 1, 4
-#    	    weighted_triplet(triplet, 5, 1, 3),
-#    	    weighted_triplet(triplet, 5, 0, 4),
-#    	    weighted_triplet(triplet, 4, 0, 5),
-#    	    weighted_triplet(triplet, 3, 1, 5),
-#    	    weighted_triplet(triplet, 3, 2, 4),
-#    	    weighted_triplet(triplet, 4, 2, 3))
-#     add_poly_cylinder(hexgrid_edges,	# Centered around 2, 2, 5
-#    	    weighted_triplet(triplet, 3, 2, 4),
-#    	    weighted_triplet(triplet, 3, 1, 5),
-#    	    weighted_triplet(triplet, 2, 1, 6),
-#    	    weighted_triplet(triplet, 1, 2, 6),
-#    	    weighted_triplet(triplet, 1, 3, 5),
-#    	    weighted_triplet(triplet, 2, 3, 4))
-#     add_poly_cylinder(hexgrid_edges,	# Centered around 1, 4, 4
-#    	    weighted_triplet(triplet, 2, 4, 3),
-#    	    weighted_triplet(triplet, 2, 3, 4),
-#    	    weighted_triplet(triplet, 1, 3, 5),
-#    	    weighted_triplet(triplet, 0, 4, 5),
-#    	    weighted_triplet(triplet, 0, 5, 4),
-#    	    weighted_triplet(triplet, 1, 5, 3))
-#     add_poly_cylinder(hexgrid_edges,	# Centered around 2, 5, 2
-#    	    weighted_triplet(triplet, 3, 5, 1),
-#    	    weighted_triplet(triplet, 3, 4, 2),
-#    	    weighted_triplet(triplet, 2, 4, 3),
-#    	    weighted_triplet(triplet, 1, 5, 3),
-#    	    weighted_triplet(triplet, 1, 6, 2),
-#    	    weighted_triplet(triplet, 2, 6, 1))
-#     add_poly_cylinder(hexgrid_edges,	# Centered around 4, 4, 1
-#    	    weighted_triplet(triplet, 5, 4, 0),
-#    	    weighted_triplet(triplet, 5, 3, 1),
-#    	    weighted_triplet(triplet, 4, 3, 2),
-#    	    weighted_triplet(triplet, 3, 4, 2),
-#    	    weighted_triplet(triplet, 3, 5, 1),
-#    	    weighted_triplet(triplet, 4, 5, 0))
+
 
 def weight_4_5(center):
     return lambda other: (4/9) * center + (5/9) * other
