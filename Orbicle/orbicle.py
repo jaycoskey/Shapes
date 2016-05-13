@@ -101,9 +101,9 @@ class Orbicle(object):
             hexagons = [wts_522, wts_414, wts_225, wts_144, wts_252, wts_441]
             for hexagon in hexagons:
                 for v in hexagon:
-                    self.hexgrid_verts += v
+                    self.hexgrid_verts.append(v)
                 for (v1, v2) in adjacent_pairs(hexagon, hexagon):
-                    self.hexgrid_edges += Cylinder(v1, v2, edge_radius)
+                    self.hexgrid_edges.append(Cylinder(v1, v2, edge_radius))
 
             # De-dupe vertices.
             # TODO: Add vertices in the weighted triplets
@@ -133,8 +133,6 @@ class Orbicle(object):
     ########################################
     # TODO: Refactor toward DRY
     def set_tori20(self):
-        self.tori20 = []
-
         # Add torus centered around f1  = Face(px00, p10z, p00z)
         wpoints1 = [ weighted_point((px00, p10z, p1y0), (6, 1, 2))
                    , weighted_point((px00, p10z, p1y0), (1, 6, 2))
@@ -143,7 +141,7 @@ class Orbicle(object):
                    , weighted_point((p10z, p00z, px01), (6, 1, 2))
                    , weighted_point((p10z, p00z, px01), (1, 6, 2))
                    ]
-        self.tori20 += torus_from_points(wpoints1)
+        t1 = torus_from_points(wpoints1)
 
         # Add torus centered around f2  = Face(px00, p00z, p0y0)
         wpoints2 = [ weighted_point((px00, p00z, p10z), (6, 1, 2))
@@ -153,7 +151,7 @@ class Orbicle(object):
                    , weighted_point((p00z, p0y0, p0y1), (6, 1, 2))
                    , weighted_point((p00z, p0y0, p0y1), (1, 6, 2))
                    ]
-        self.tori20 += torus_from_points(wpoints2)
+        t2 = torus_from_points(wpoints2)
 
         # Add torus centered around f3  = Face(px00, p0y0, px10)
         wpoints3 = [ weighted_point((px00, p0y0, p00z), (6, 1, 2))
@@ -163,7 +161,7 @@ class Orbicle(object):
                    , weighted_point((p0y0, px10, p01z), (6, 1, 2))
                    , weighted_point((p0y0, px10, p01z), (1, 6, 2))
                    ]
-        self.tori20 += torus_from_points(wpoints3)
+        t3 = torus_from_points(wpoints3)
 
         # Add torus centered around f4  = Face(px00, px10, p1y0)
         wpoints4 = [ weighted_point((px00, px10, p0y0), (6, 1, 2))
@@ -173,7 +171,7 @@ class Orbicle(object):
                    , weighted_point((px10, p1y0, p11z), (6, 1, 2))
                    , weighted_point((px10, p1y0, p11z), (1, 6, 2))
                    ]
-        self.tori20 += torus_from_points(wpoints4)
+        t4 = torus_from_points(wpoints4)
 
         # Add torus centered around f5  = Face(px00, p1y0, p10z)
         wpoints5 = [ weighted_point((px00, p1y0, px10), (6, 1, 2))
@@ -183,7 +181,7 @@ class Orbicle(object):
                    , weighted_point((p1y0, p10z, p1y1), (6, 1, 2))
                    , weighted_point((p1y0, p10z, p1y1), (1, 6, 2))
                    ]
-        self.tori20 += torus_from_points(wpoints5)
+        t5 = torus_from_points(wpoints5)
 
         # Add torus centered around f6  = Face(p10z, p1y0, p1y1)
         wpoints6 = [ weighted_point((p10z, p1y0, px00), (6, 1, 2))
@@ -193,7 +191,7 @@ class Orbicle(object):
                    , weighted_point((p1y0, p1y1, p11z), (6, 1, 2))
                    , weighted_point((p1y0, p1y1, p11z), (1, 6, 2))
                    ]
-        self.tori20 += torus_from_points(wpoints6)
+        t6 = torus_from_points(wpoints6)
 
         # Add torus centered around f7  = Face(p10z, p1y1, px01)
         wpoints7 = [ weighted_point((p10z, p1y1, p1y0), (6, 1, 2))
@@ -203,7 +201,7 @@ class Orbicle(object):
                    , weighted_point((p1y1, px01, px11), (6, 1, 2))
                    , weighted_point((p1y1, px01, px11), (1, 6, 2))
                    ]
-        self.tori20 += torus_from_points(wpoints7)
+        t7 = torus_from_points(wpoints7)
 
         # Add torus centered around f8  = Face(p10z, px01, p00z)
         wpoints8 = [ weighted_point((p10z, px01, p1y1), (6, 1, 2))
@@ -213,7 +211,7 @@ class Orbicle(object):
                    , weighted_point((px01, p00z, p0y1), (6, 1, 2))
                    , weighted_point((px01, p00z, p0y1), (1, 6, 2))
                    ]
-        self.tori20 += torus_from_points(wpoints8)
+        t8 = torus_from_points(wpoints8)
 
         # Add torus centered around f9  = Face(p00z, px01, p0y1)
         wpoints9 = [ weighted_point((p00z, px01, p10z), (6, 1, 2))
@@ -223,7 +221,7 @@ class Orbicle(object):
                    , weighted_point((px01, p0y1, px11), (6, 1, 2))
                    , weighted_point((px01, p0y1, px11), (1, 6, 2))
                    ]
-        self.tori20 += torus_from_points(wpoints9)
+        t9 = torus_from_points(wpoints9)
 
         # Add torus centered around f10 = Face(p00z, p0y1, p0y0)
         wpoints10 = [ weighted_point((p00z, p0y1, px01), (6, 1, 2))
@@ -233,7 +231,7 @@ class Orbicle(object):
                     , weighted_point((p0y1, p0y0, p01z), (6, 1, 2))
                     , weighted_point((p0y1, p0y0, p01z), (1, 6, 2))
                     ]
-        self.tori20 += torus_from_points(wpoints10)
+        t10 = torus_from_points(wpoints10)
 
         # Add torus centered around f11 = Face(p0y0, p0y1, p01z)
         wpoints11 = [ weighted_point((p0y0, p0y1, p00z), (6, 1, 2))
@@ -243,7 +241,7 @@ class Orbicle(object):
                     , weighted_point((p0y1, p01z, px11), (6, 1, 2))
                     , weighted_point((p0y1, p01z, px11), (1, 6, 2))
                     ]
-        self.tori20 += torus_from_points(wpoints11)
+        t11 = torus_from_points(wpoints11)
 
         # Add torus centered around f12 = Face(p0y0, p01z, px10)
         wpoints12 = [ weighted_point((p0y0, p01z, p0y1), (6, 1, 2))
@@ -253,7 +251,7 @@ class Orbicle(object):
                     , weighted_point((p01z, px10, p11z), (6, 1, 2))
                     , weighted_point((p01z, px10, p11z), (1, 6, 2))
                     ]
-        self.tori20 += torus_from_points(wpoints12)
+        t12 = torus_from_points(wpoints12)
 
         # Add torus centered around f13 = Face(px10, p01z, p11z)
         wpoints13 = [ weighted_point((px10, p01z, p0y0), (6, 1, 2))
@@ -263,7 +261,7 @@ class Orbicle(object):
                     , weighted_point((p01z, p11z, px11), (6, 1, 2))
                     , weighted_point((p01z, p11z, px11), (1, 6, 2))
                     ]
-        self.tori20 += torus_from_points(wpoints13)
+        t13 = torus_from_points(wpoints13)
 
         # Add torus centered around f14 = Face(px10, p11z, p1y0)
         wpoints14 = [ weighted_point((px10, p11z, p01z), (6, 1, 2))
@@ -273,7 +271,7 @@ class Orbicle(object):
                     , weighted_point((p11z, p1y0, p1y1), (6, 1, 2))
                     , weighted_point((p11z, p1y0, p1y1), (1, 6, 2))
                     ]
-        self.tori20 += torus_from_points(wpoints14)
+        t14 = torus_from_points(wpoints14)
 
         # Add torus centered around f15 = Face(p1y0, p11z, p1y1)
         wpoints15 = [ weighted_point((p1y0, p11z, px10), (6, 1, 2))
@@ -283,7 +281,7 @@ class Orbicle(object):
                     , weighted_point((p11z, p1y1, px11), (6, 1, 2))
                     , weighted_point((p11z, p1y1, px11), (1, 6, 2))
                     ]
-        self.tori20 += torus_from_points(wpoints15)
+        t15 = torus_from_points(wpoints15)
 
         # Add torus centered around f16 = Face(p1y1, p11z, px11)
         wpoints16 = [ weighted_point((p1y1, p11z, p1y0), (6, 1, 2))
@@ -293,7 +291,7 @@ class Orbicle(object):
                     , weighted_point((p11z, px11, p01z), (6, 1, 2))
                     , weighted_point((p11z, px11, p01z), (1, 6, 2))
                     ]
-        self.tori20 += torus_from_points(wpoints16)
+        t16 = torus_from_points(wpoints16)
 
         # Add torus centered around f17 = Face(p1y1, px11, px01)
         wpoints17 = [ weighted_point((p1y1, px11, p11z), (6, 1, 2))
@@ -303,7 +301,7 @@ class Orbicle(object):
                     , weighted_point((px11, px01, p0y1), (6, 1, 2))
                     , weighted_point((px11, px01, p0y1), (1, 6, 2))
                     ]
-        self.tori20 += torus_from_points(wpoints17)
+        t17 = torus_from_points(wpoints17)
 
         # Add torus centered around f18 = Face(px01, px11, p0y1)
         wpoints18 = [ weighted_point((px01, px11, p1y1), (6, 1, 2))
@@ -313,7 +311,7 @@ class Orbicle(object):
                     , weighted_point((px11, p0y1, p01z), (6, 1, 2))
                     , weighted_point((px11, p0y1, p01z), (1, 6, 2))
                     ]
-        self.tori20 += torus_from_points(wpoints18)
+        t18 = torus_from_points(wpoints18)
 
         # Add torus centered around f19 = Face(p0y1, px11, p01z)
         wpoints19 = [ weighted_point((p0y1, px11, px01), (6, 1, 2))
@@ -323,7 +321,7 @@ class Orbicle(object):
                     , weighted_point((px11, p01z, p11z), (6, 1, 2))
                     , weighted_point((px11, p01z, p11z), (1, 6, 2))
                     ]
-        self.tori20 += torus_from_points(wpoints19)
+        t19 = torus_from_points(wpoints19)
 
         # Add torus centered around f20 = Face(p01z, px11, p11z)
         wpoints20 = [ weighted_point((p01z, px11, p0y1), (6, 1, 2))
@@ -333,7 +331,11 @@ class Orbicle(object):
                     , weighted_point((px11, p11z, p1y1), (6, 1, 2))
                     , weighted_point((px11, p11z, p1y1), (1, 6, 2))
                     ]
-        self.tori20 += torus_from_points(wpoints20)
+        t20 = torus_from_points(wpoints20)
+
+        self.tori20 = [  t1,  t2,  t3,  t4,  t5,  t6,  t7,  t8,  t9, t10
+                      , t11, t12, t13, t14, t15, t16, t17, t18, t19, t20
+                      ]
 
 # def render_icosa_verts():
 #    for v in icosa_verts:
