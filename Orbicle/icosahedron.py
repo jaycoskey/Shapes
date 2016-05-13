@@ -1,7 +1,7 @@
 #!/bin/python
 ########################################
 # Goal: Visualize then 3D-print a particular sphere-like 3D shape.
-#       The components are line segments (cylinders) and circles (toruses).
+#       The components are line segments (cylinders) and circles (tori).
 ########################################
 from geometry import *
 
