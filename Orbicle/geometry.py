@@ -1,7 +1,7 @@
 #!/bin/python
 
 from math import *
-
+from numpy import mean
 
 ########################################
 # Types
@@ -64,9 +64,10 @@ class Cylinder(object):
 
 class Torus(object):
     def __init__(self, minor_radius, points):
-        self.center       = average(points)
+        self.center       = average_point(points)
         self.minor_radius = minor_radius
-        self.major_radius = average(map(self.center.distance_from, points))
+        distances_from_center = [self.center.distance_from(p) for p in points]
+        self.major_radius = mean(distances_from_center)
 
 
 class Triangle(object):
@@ -76,20 +77,20 @@ class Triangle(object):
         self.c = c
 
 
-# def average(*points):
+# def average_point(*points):
 #   center = Point()
 #   for point in points:
 #       center += point
 #   center /= points.Length
-def average(points) -> Point:
-    """
-    :rtype: Point
-    """
-    num   = len(list(points))
-    sum_x = sum(map(lambda p: p.x, points))
-    sum_y = sum(map(lambda p: p.y, points))
-    sum_z = sum(map(lambda p: p.z, points))
-    assert isinstance(num, object)
+def average_point(points) -> Point:
+    pts      = list(points)
+    num      = len(pts)
+    x_coords = [p.x for p in pts]
+    y_coords = [p.y for p in pts]
+    z_coords = [p.z for p in pts]
+    sum_x = sum(x_coords)
+    sum_y = sum(y_coords)
+    sum_z = sum(z_coords)
     return Point(sum_x / num, sum_y / num, sum_z / num)
 
 
