@@ -136,227 +136,204 @@ class Orbicle(object):
         self.tori20 = []
 
         # Add torus centered around f1  = Face(px00, p10z, p00z)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((px00, p10z, p1y0), (6, 1, 2))
-            , weighted_point((px00, p10z, p1y0), (1, 6, 2))
-            , weighted_point((px00, p00z, p0y0), (6, 1, 2))
-            , weighted_point((px00, p00z, p0y0), (1, 6, 2))
-            , weighted_point((p10z, p00z, px01), (6, 1, 2))
-            , weighted_point((p10z, p00z, px01), (1, 6, 2))
-            ]
-          )
+        wpoints1 = [ weighted_point((px00, p10z, p1y0), (6, 1, 2))
+                   , weighted_point((px00, p10z, p1y0), (1, 6, 2))
+                   , weighted_point((px00, p00z, p0y0), (6, 1, 2))
+                   , weighted_point((px00, p00z, p0y0), (1, 6, 2))
+                   , weighted_point((p10z, p00z, px01), (6, 1, 2))
+                   , weighted_point((p10z, p00z, px01), (1, 6, 2))
+                   ]
+        self.tori20 += torus_from_points(wpoints1)
 
         # Add torus centered around f2  = Face(px00, p00z, p0y0)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((px00, p00z, p10z), (6, 1, 2))
-            , weighted_point((px00, p00z, p10z), (1, 6, 2))
-            , weighted_point((px00, p0y0, px10), (6, 1, 2))
-            , weighted_point((px00, p0y0, px10), (1, 6, 2))
-            , weighted_point((p00z, p0y0, p0y1), (6, 1, 2))
-            , weighted_point((p00z, p0y0, p0y1), (1, 6, 2))
-            ]
-          )
+        wpoints2 = [ weighted_point((px00, p00z, p10z), (6, 1, 2))
+                   , weighted_point((px00, p00z, p10z), (1, 6, 2))
+                   , weighted_point((px00, p0y0, px10), (6, 1, 2))
+                   , weighted_point((px00, p0y0, px10), (1, 6, 2))
+                   , weighted_point((p00z, p0y0, p0y1), (6, 1, 2))
+                   , weighted_point((p00z, p0y0, p0y1), (1, 6, 2))
+                   ]
+        self.tori20 += torus_from_points(wpoints2)
 
         # Add torus centered around f3  = Face(px00, p0y0, px10)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((px00, p0y0, p00z), (6, 1, 2))
-            , weighted_point((px00, p0y0, p00z), (1, 6, 2))
-            , weighted_point((px00, px10, p1y0), (6, 1, 2))
-            , weighted_point((px00, px10, p1y0), (1, 6, 2))
-            , weighted_point((p0y0, px10, p01z), (6, 1, 2))
-            , weighted_point((p0y0, px10, p01z), (1, 6, 2))
-            ]
-          )
+        wpoints3 = [ weighted_point((px00, p0y0, p00z), (6, 1, 2))
+                   , weighted_point((px00, p0y0, p00z), (1, 6, 2))
+                   , weighted_point((px00, px10, p1y0), (6, 1, 2))
+                   , weighted_point((px00, px10, p1y0), (1, 6, 2))
+                   , weighted_point((p0y0, px10, p01z), (6, 1, 2))
+                   , weighted_point((p0y0, px10, p01z), (1, 6, 2))
+                   ]
+        self.tori20 += torus_from_points(wpoints3)
 
         # Add torus centered around f4  = Face(px00, px10, p1y0)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((px00, px10, p0y0), (6, 1, 2))
-            , weighted_point((px00, px10, p0y0), (1, 6, 2))
-            , weighted_point((px00, p1y0, p10z), (6, 1, 2))
-            , weighted_point((px00, p1y0, p10z), (1, 6, 2))
-            , weighted_point((px10, p1y0, p11z), (6, 1, 2))
-            , weighted_point((px10, p1y0, p11z), (1, 6, 2))
-            ]
-          )
+        wpoints4 = [ weighted_point((px00, px10, p0y0), (6, 1, 2))
+                   , weighted_point((px00, px10, p0y0), (1, 6, 2))
+                   , weighted_point((px00, p1y0, p10z), (6, 1, 2))
+                   , weighted_point((px00, p1y0, p10z), (1, 6, 2))
+                   , weighted_point((px10, p1y0, p11z), (6, 1, 2))
+                   , weighted_point((px10, p1y0, p11z), (1, 6, 2))
+                   ]
+        self.tori20 += torus_from_points(wpoints4)
 
         # Add torus centered around f5  = Face(px00, p1y0, p10z)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((px00, p1y0, px10), (6, 1, 2))
-            , weighted_point((px00, p1y0, px10), (1, 6, 2))
-            , weighted_point((px00, p10z, p00z), (6, 1, 2))
-            , weighted_point((px00, p10z, p00z), (1, 6, 2))
-            , weighted_point((p1y0, p10z, p1y1), (6, 1, 2))
-            , weighted_point((p1y0, p10z, p1y1), (1, 6, 2))
-            ]
-          )
+        wpoints5 = [ weighted_point((px00, p1y0, px10), (6, 1, 2))
+                   , weighted_point((px00, p1y0, px10), (1, 6, 2))
+                   , weighted_point((px00, p10z, p00z), (6, 1, 2))
+                   , weighted_point((px00, p10z, p00z), (1, 6, 2))
+                   , weighted_point((p1y0, p10z, p1y1), (6, 1, 2))
+                   , weighted_point((p1y0, p10z, p1y1), (1, 6, 2))
+                   ]
+        self.tori20 += torus_from_points(wpoints5)
 
         # Add torus centered around f6  = Face(p10z, p1y0, p1y1)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((p10z, p1y0, px00), (6, 1, 2))
-            , weighted_point((p10z, p1y0, px00), (1, 6, 2))
-            , weighted_point((p10z, p1y1, px01), (6, 1, 2))
-            , weighted_point((p10z, p1y1, px01), (1, 6, 2))
-            , weighted_point((p1y0, p1y1, p11z), (6, 1, 2))
-            , weighted_point((p1y0, p1y1, p11z), (1, 6, 2))
-            ]
-          )
+        wpoints6 = [ weighted_point((p10z, p1y0, px00), (6, 1, 2))
+                   , weighted_point((p10z, p1y0, px00), (1, 6, 2))
+                   , weighted_point((p10z, p1y1, px01), (6, 1, 2))
+                   , weighted_point((p10z, p1y1, px01), (1, 6, 2))
+                   , weighted_point((p1y0, p1y1, p11z), (6, 1, 2))
+                   , weighted_point((p1y0, p1y1, p11z), (1, 6, 2))
+                   ]
+        self.tori20 += torus_from_points(wpoints6)
 
         # Add torus centered around f7  = Face(p10z, p1y1, px01)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((p10z, p1y1, p1y0), (6, 1, 2))
-            , weighted_point((p10z, p1y1, p1y0), (1, 6, 2))
-            , weighted_point((p10z, px01, p00z), (6, 1, 2))
-            , weighted_point((p10z, px01, p00z), (1, 6, 2))
-            , weighted_point((p1y1, px01, px11), (6, 1, 2))
-            , weighted_point((p1y1, px01, px11), (1, 6, 2))
-            ]
-          )
+        wpoints7 = [ weighted_point((p10z, p1y1, p1y0), (6, 1, 2))
+                   , weighted_point((p10z, p1y1, p1y0), (1, 6, 2))
+                   , weighted_point((p10z, px01, p00z), (6, 1, 2))
+                   , weighted_point((p10z, px01, p00z), (1, 6, 2))
+                   , weighted_point((p1y1, px01, px11), (6, 1, 2))
+                   , weighted_point((p1y1, px01, px11), (1, 6, 2))
+                   ]
+        self.tori20 += torus_from_points(wpoints7)
 
         # Add torus centered around f8  = Face(p10z, px01, p00z)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((p10z, px01, p1y1), (6, 1, 2))
-            , weighted_point((p10z, px01, p1y1), (1, 6, 2))
-            , weighted_point((p10z, p00z, px00), (6, 1, 2))
-            , weighted_point((p10z, p00z, px00), (1, 6, 2))
-            , weighted_point((px01, p00z, p0y1), (6, 1, 2))
-            , weighted_point((px01, p00z, p0y1), (1, 6, 2))
-            ]
-          )
+        wpoints8 = [ weighted_point((p10z, px01, p1y1), (6, 1, 2))
+                   , weighted_point((p10z, px01, p1y1), (1, 6, 2))
+                   , weighted_point((p10z, p00z, px00), (6, 1, 2))
+                   , weighted_point((p10z, p00z, px00), (1, 6, 2))
+                   , weighted_point((px01, p00z, p0y1), (6, 1, 2))
+                   , weighted_point((px01, p00z, p0y1), (1, 6, 2))
+                   ]
+        self.tori20 += torus_from_points(wpoints8)
 
         # Add torus centered around f9  = Face(p00z, px01, p0y1)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((p00z, px01, p10z), (6, 1, 2))
-            , weighted_point((p00z, px01, p10z), (1, 6, 2))
-            , weighted_point((p00z, p0y1, p0y0), (6, 1, 2))
-            , weighted_point((p00z, p0y1, p0y0), (1, 6, 2))
-            , weighted_point((px01, p0y1, px11), (6, 1, 2))
-            , weighted_point((px01, p0y1, px11), (1, 6, 2))
-            ]
-          )
+        wpoints9 = [ weighted_point((p00z, px01, p10z), (6, 1, 2))
+                   , weighted_point((p00z, px01, p10z), (1, 6, 2))
+                   , weighted_point((p00z, p0y1, p0y0), (6, 1, 2))
+                   , weighted_point((p00z, p0y1, p0y0), (1, 6, 2))
+                   , weighted_point((px01, p0y1, px11), (6, 1, 2))
+                   , weighted_point((px01, p0y1, px11), (1, 6, 2))
+                   ]
+        self.tori20 += torus_from_points(wpoints9)
 
         # Add torus centered around f10 = Face(p00z, p0y1, p0y0)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((p00z, p0y1, px01), (6, 1, 2))
-            , weighted_point((p00z, p0y1, px01), (1, 6, 2))
-            , weighted_point((p00z, p0y0, px00), (6, 1, 2))
-            , weighted_point((p00z, p0y0, px00), (1, 6, 2))
-            , weighted_point((p0y1, p0y0, p01z), (6, 1, 2))
-            , weighted_point((p0y1, p0y0, p01z), (1, 6, 2))
-            ]
-          )
+        wpoints10 = [ weighted_point((p00z, p0y1, px01), (6, 1, 2))
+                    , weighted_point((p00z, p0y1, px01), (1, 6, 2))
+                    , weighted_point((p00z, p0y0, px00), (6, 1, 2))
+                    , weighted_point((p00z, p0y0, px00), (1, 6, 2))
+                    , weighted_point((p0y1, p0y0, p01z), (6, 1, 2))
+                    , weighted_point((p0y1, p0y0, p01z), (1, 6, 2))
+                    ]
+        self.tori20 += torus_from_points(wpoints10)
 
         # Add torus centered around f11 = Face(p0y0, p0y1, p01z)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((p0y0, p0y1, p00z), (6, 1, 2))
-            , weighted_point((p0y0, p0y1, p00z), (1, 6, 2))
-            , weighted_point((p0y0, p01z, px10), (6, 1, 2))
-            , weighted_point((p0y0, p01z, px10), (1, 6, 2))
-            , weighted_point((p0y1, p01z, px11), (6, 1, 2))
-            , weighted_point((p0y1, p01z, px11), (1, 6, 2))
-            ]
-          )
+        wpoints11 = [ weighted_point((p0y0, p0y1, p00z), (6, 1, 2))
+                    , weighted_point((p0y0, p0y1, p00z), (1, 6, 2))
+                    , weighted_point((p0y0, p01z, px10), (6, 1, 2))
+                    , weighted_point((p0y0, p01z, px10), (1, 6, 2))
+                    , weighted_point((p0y1, p01z, px11), (6, 1, 2))
+                    , weighted_point((p0y1, p01z, px11), (1, 6, 2))
+                    ]
+        self.tori20 += torus_from_points(wpoints11)
 
         # Add torus centered around f12 = Face(p0y0, p01z, px10)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((p0y0, p01z, p0y1), (6, 1, 2))
-            , weighted_point((p0y0, p01z, p0y1), (1, 6, 2))
-            , weighted_point((p0y0, px10, px00), (6, 1, 2))
-            , weighted_point((p0y0, px10, px00), (1, 6, 2))
-            , weighted_point((p01z, px10, p11z), (6, 1, 2))
-            , weighted_point((p01z, px10, p11z), (1, 6, 2))
-            ]
-          )
+        wpoints12 = [ weighted_point((p0y0, p01z, p0y1), (6, 1, 2))
+                    , weighted_point((p0y0, p01z, p0y1), (1, 6, 2))
+                    , weighted_point((p0y0, px10, px00), (6, 1, 2))
+                    , weighted_point((p0y0, px10, px00), (1, 6, 2))
+                    , weighted_point((p01z, px10, p11z), (6, 1, 2))
+                    , weighted_point((p01z, px10, p11z), (1, 6, 2))
+                    ]
+        self.tori20 += torus_from_points(wpoints12)
 
         # Add torus centered around f13 = Face(px10, p01z, p11z)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((px10, p01z, p0y0), (6, 1, 2))
-            , weighted_point((px10, p01z, p0y0), (1, 6, 2))
-            , weighted_point((px10, p11z, p1y0), (6, 1, 2))
-            , weighted_point((px10, p11z, p1y0), (1, 6, 2))
-            , weighted_point((p01z, p11z, px11), (6, 1, 2))
-            , weighted_point((p01z, p11z, px11), (1, 6, 2))
-            ]
-          )
+        wpoints13 = [ weighted_point((px10, p01z, p0y0), (6, 1, 2))
+                    , weighted_point((px10, p01z, p0y0), (1, 6, 2))
+                    , weighted_point((px10, p11z, p1y0), (6, 1, 2))
+                    , weighted_point((px10, p11z, p1y0), (1, 6, 2))
+                    , weighted_point((p01z, p11z, px11), (6, 1, 2))
+                    , weighted_point((p01z, p11z, px11), (1, 6, 2))
+                    ]
+        self.tori20 += torus_from_points(wpoints13)
 
         # Add torus centered around f14 = Face(px10, p11z, p1y0)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((px10, p11z, p01z), (6, 1, 2))
-            , weighted_point((px10, p11z, p01z), (1, 6, 2))
-            , weighted_point((px10, p1y0, px00), (6, 1, 2))
-            , weighted_point((px10, p1y0, px00), (1, 6, 2))
-            , weighted_point((p11z, p1y0, p1y1), (6, 1, 2))
-            , weighted_point((p11z, p1y0, p1y1), (1, 6, 2))
-            ]
-          )
+        wpoints14 = [ weighted_point((px10, p11z, p01z), (6, 1, 2))
+                    , weighted_point((px10, p11z, p01z), (1, 6, 2))
+                    , weighted_point((px10, p1y0, px00), (6, 1, 2))
+                    , weighted_point((px10, p1y0, px00), (1, 6, 2))
+                    , weighted_point((p11z, p1y0, p1y1), (6, 1, 2))
+                    , weighted_point((p11z, p1y0, p1y1), (1, 6, 2))
+                    ]
+        self.tori20 += torus_from_points(wpoints14)
 
         # Add torus centered around f15 = Face(p1y0, p11z, p1y1)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((p1y0, p11z, px10), (6, 1, 2))
-            , weighted_point((p1y0, p11z, px10), (1, 6, 2))
-            , weighted_point((p1y0, p1y1, p10z), (6, 1, 2))
-            , weighted_point((p1y0, p1y1, p10z), (1, 6, 2))
-            , weighted_point((p11z, p1y1, px11), (6, 1, 2))
-            , weighted_point((p11z, p1y1, px11), (1, 6, 2))
-            ]
-          )
+        wpoints15 = [ weighted_point((p1y0, p11z, px10), (6, 1, 2))
+                    , weighted_point((p1y0, p11z, px10), (1, 6, 2))
+                    , weighted_point((p1y0, p1y1, p10z), (6, 1, 2))
+                    , weighted_point((p1y0, p1y1, p10z), (1, 6, 2))
+                    , weighted_point((p11z, p1y1, px11), (6, 1, 2))
+                    , weighted_point((p11z, p1y1, px11), (1, 6, 2))
+                    ]
+        self.tori20 += torus_from_points(wpoints15)
 
         # Add torus centered around f16 = Face(p1y1, p11z, px11)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((p1y1, p11z, p1y0), (6, 1, 2))
-            , weighted_point((p1y1, p11z, p1y0), (1, 6, 2))
-            , weighted_point((p1y1, px11, px01), (6, 1, 2))
-            , weighted_point((p1y1, px11, px01), (1, 6, 2))
-            , weighted_point((p11z, px11, p01z), (6, 1, 2))
-            , weighted_point((p11z, px11, p01z), (1, 6, 2))
-            ]
-          )
+        wpoints16 = [ weighted_point((p1y1, p11z, p1y0), (6, 1, 2))
+                    , weighted_point((p1y1, p11z, p1y0), (1, 6, 2))
+                    , weighted_point((p1y1, px11, px01), (6, 1, 2))
+                    , weighted_point((p1y1, px11, px01), (1, 6, 2))
+                    , weighted_point((p11z, px11, p01z), (6, 1, 2))
+                    , weighted_point((p11z, px11, p01z), (1, 6, 2))
+                    ]
+        self.tori20 += torus_from_points(wpoints16)
 
         # Add torus centered around f17 = Face(p1y1, px11, px01)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((p1y1, px11, p11z), (6, 1, 2))
-            , weighted_point((p1y1, px11, p11z), (1, 6, 2))
-            , weighted_point((p1y1, px01, p10z), (6, 1, 2))
-            , weighted_point((p1y1, px01, p10z), (1, 6, 2))
-            , weighted_point((px11, px01, p0y1), (6, 1, 2))
-            , weighted_point((px11, px01, p0y1), (1, 6, 2))
-            ]
-          )
+        wpoints17 = [ weighted_point((p1y1, px11, p11z), (6, 1, 2))
+                    , weighted_point((p1y1, px11, p11z), (1, 6, 2))
+                    , weighted_point((p1y1, px01, p10z), (6, 1, 2))
+                    , weighted_point((p1y1, px01, p10z), (1, 6, 2))
+                    , weighted_point((px11, px01, p0y1), (6, 1, 2))
+                    , weighted_point((px11, px01, p0y1), (1, 6, 2))
+                    ]
+        self.tori20 += torus_from_points(wpoints17)
 
         # Add torus centered around f18 = Face(px01, px11, p0y1)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((px01, px11, p1y1), (6, 1, 2))
-            , weighted_point((px01, px11, p1y1), (1, 6, 2))
-            , weighted_point((px01, p0y1, p00z), (6, 1, 2))
-            , weighted_point((px01, p0y1, p00z), (1, 6, 2))
-            , weighted_point((px11, p0y1, p01z), (6, 1, 2))
-            , weighted_point((px11, p0y1, p01z), (1, 6, 2))
-            ]
-          )
+        wpoints18 = [ weighted_point((px01, px11, p1y1), (6, 1, 2))
+                    , weighted_point((px01, px11, p1y1), (1, 6, 2))
+                    , weighted_point((px01, p0y1, p00z), (6, 1, 2))
+                    , weighted_point((px01, p0y1, p00z), (1, 6, 2))
+                    , weighted_point((px11, p0y1, p01z), (6, 1, 2))
+                    , weighted_point((px11, p0y1, p01z), (1, 6, 2))
+                    ]
+        self.tori20 += torus_from_points(wpoints18)
 
         # Add torus centered around f19 = Face(p0y1, px11, p01z)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((p0y1, px11, px01), (6, 1, 2))
-            , weighted_point((p0y1, px11, px01), (1, 6, 2))
-            , weighted_point((p0y1, p01z, p0y0), (6, 1, 2))
-            , weighted_point((p0y1, p01z, p0y0), (1, 6, 2))
-            , weighted_point((px11, p01z, p11z), (6, 1, 2))
-            , weighted_point((px11, p01z, p11z), (1, 6, 2))
-            ]
-          )
+        wpoints19 = [ weighted_point((p0y1, px11, px01), (6, 1, 2))
+                    , weighted_point((p0y1, px11, px01), (1, 6, 2))
+                    , weighted_point((p0y1, p01z, p0y0), (6, 1, 2))
+                    , weighted_point((p0y1, p01z, p0y0), (1, 6, 2))
+                    , weighted_point((px11, p01z, p11z), (6, 1, 2))
+                    , weighted_point((px11, p01z, p11z), (1, 6, 2))
+                    ]
+        self.tori20 += torus_from_points(wpoints19)
 
         # Add torus centered around f20 = Face(p01z, px11, p11z)
-        self.tori20 += self.torus_from_points(
-            [ weighted_point((p01z, px11, p0y1), (6, 1, 2))
-            , weighted_point((p01z, px11, p0y1), (1, 6, 2))
-            , weighted_point((p01z, p11z, px10), (6, 1, 2))
-            , weighted_point((p01z, p11z, px10), (1, 6, 2))
-            , weighted_point((px11, p11z, p1y1), (6, 1, 2))
-            , weighted_point((px11, p11z, p1y1), (1, 6, 2))
-            ]
-          )
-
-    def torus_from_points(self, points) -> Torus:
-        return Torus(torus_minor_radius, points)
+        wpoints20 = [ weighted_point((p01z, px11, p0y1), (6, 1, 2))
+                    , weighted_point((p01z, px11, p0y1), (1, 6, 2))
+                    , weighted_point((p01z, p11z, px10), (6, 1, 2))
+                    , weighted_point((p01z, p11z, px10), (1, 6, 2))
+                    , weighted_point((px11, p11z, p1y1), (6, 1, 2))
+                    , weighted_point((px11, p11z, p1y1), (1, 6, 2))
+                    ]
+        self.tori20 += torus_from_points(wpoints20)
 
 # def render_icosa_verts():
 #    for v in icosa_verts:
@@ -368,6 +345,10 @@ class Orbicle(object):
 def adjacent_pairs(list1, list2):
     list2.append(list2.pop(0))
     return zip(list1, list2)
+
+
+def torus_from_points(points) -> Torus:
+    return Torus(torus_minor_radius, points)
 
 
 def weight_4_5(center):
@@ -383,7 +364,7 @@ def weighted_point(points3, weights3) -> Point:
     coords_y = [p1.y, p2.y, p3.y]
     coords_z = [p1.z, p2.z, p3.z]
     def weighted(coords):
-        return [w*c for (w,c) in zip(weights, coords)]
+        return sum([w*c for (w,c) in zip(weights, coords)])
     return Point(weighted(coords_x), weighted(coords_y), weighted(coords_z))
 
 
