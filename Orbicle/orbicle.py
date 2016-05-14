@@ -4,13 +4,14 @@
 #       The components are line segments (cylinders) and circles (toruses).
 ########################################
 
+from util import adjacent_pairs
 # from geometry import *
 from icosahedron import *
 
 # Parameters
 vertex_radius = 0.02
 vertex_frequency = 4
-edge_radius = 0.02
+hexgrid_radius = 0.02
 torus_minor_radius = 0.02
 torus_major_segments = 90
 torus_minor_segments = 18
@@ -22,14 +23,30 @@ torus_minor_segments = 18
 class Orbicle(object):
     def __init__(self):
         self.icosa = Icosahedron()
-        self.hexgrid_verts = []
-        self.hexgrid_edges = []
         self.tori12 = []
         self.tori20 = []
+        self.hexgrid_verts = []
+        self.hexgrid_edges = []
+        self.set_tori12()
+        self.set_tori20()
+        self.set_hexgrid()
 
     ########################################
     # Add hexgrids
     ########################################
+    def print(self):
+        print('12 (smaller) vertex-centered tori')
+        for t12 in self.tori12:
+            print(t12)
+        print()
+        print('20 (larger) face-centered tori')
+        for t20 in self.tori20:
+            print(t20)
+        #for hv in self.hexgrid_verts:
+        #    print(hv)
+        #for he in self.hexgrid_edges:
+        #    print(he)
+
     def set_hexgrid(self):
         self.hexgrid_verts = []
         self.hexgrid_edges = []
@@ -102,8 +119,8 @@ class Orbicle(object):
             for hexagon in hexagons:
                 for v in hexagon:
                     self.hexgrid_verts.append(v)
-                for (v1, v2) in adjacent_pairs(hexagon, hexagon):
-                    self.hexgrid_edges.append(Cylinder(v1, v2, edge_radius))
+                for (v1, v2) in adjacent_pairs(hexagon):
+                    self.hexgrid_edges.append(Cylinder(v1, v2, hexgrid_radius))
 
             # De-dupe vertices.
             # TODO: Add vertices in the weighted triplets
@@ -344,11 +361,6 @@ class Orbicle(object):
 ########################################
 # Add planar hexagons
 ########################################
-def adjacent_pairs(list1, list2):
-    list2.append(list2.pop(0))
-    return zip(list1, list2)
-
-
 def torus_from_points(points) -> Torus:
     return Torus(torus_minor_radius, points)
 
@@ -374,13 +386,10 @@ def weighted_torus(center, others):
     points = list(map(weight_4_5(center), others))
     return Torus(torus_minor_radius, points)
 
-
 def main():
     print('Hello, world!')
     orb = Orbicle()
-    orb.set_tori12()
-    orb.set_tori20()
-    orb.set_hexgrid()
+    orb.print()
 
 if __name__ == '__main__':
     main()
