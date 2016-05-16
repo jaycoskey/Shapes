@@ -101,15 +101,15 @@ class Torus(object):
         self.minor_radius = minor_radius
 
         distances_from_center = [self.center.distance_from(p) for p in points]
-        self.major_radius = mean(distances_from_center)
+        self.major_radius     = mean(distances_from_center)
 
-        deltas       = [p - s        for (p,s)    in adjacent_pairs(points)]
-        norms        = [d1.cross(d2) for (d1, d2) in adjacent_pairs(deltas)]
-        self.norm    = average_vector(norms).normalized()
+        deltas      = [p - s        for (p,s)    in adjacent_pairs(points)]
+        normals     = [d1.cross(d2) for (d1, d2) in adjacent_pairs(deltas)]
+        self.normal = average_vector(normals).normalized()
 
     def __str__(self):
-        return 'Torus: center={0}, norm={1}, R={2:>7.4f}, r={3:>7.4f}'.format(
-            self.center, self.norm, self.major_radius, self.minor_radius)
+        return 'Torus: center={0}, normal={1}, R={2:>7.4f}, r={3:>7.4f}'.format(
+            self.center, self.normal, self.major_radius, self.minor_radius)
 
 class Triangle(object):
     def __init__(self, a, b, c):
@@ -144,6 +144,9 @@ def average_point(points) -> Point:
 def average_vector(vectors) -> Vector:
     (val_x, val_y, val_z) = avg(vectors)
     return Vector(val_x, val_y, val_z)
+
+def mkCyl(center1, center2):
+    return Cylinder(center1, center2, r = test_cube_edge_radius)
 
 def main():
     print('Hello, world!')

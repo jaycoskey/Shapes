@@ -2,7 +2,7 @@
 
 from math import fabs
 
-epsilon_threshold = 0.0001
+from params import *
 
 def adjacent_pairs(lst):
     list2 = list(lst)

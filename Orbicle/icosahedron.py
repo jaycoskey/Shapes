@@ -48,16 +48,16 @@ p11z = Point( 1,  phi, 0)
 # Define icosahedral faces
 ########################################
 # TODO: Refactor toward DRY
-f1 = Triangle(px00, p10z, p00z)
-f2 = Triangle(px00, p00z, p0y0)
-f3 = Triangle(px00, p0y0, px10)
-f4 = Triangle(px00, px10, p1y0)
-f5 = Triangle(px00, p1y0, p10z)
+f1  = Triangle(px00, p10z, p00z)
+f2  = Triangle(px00, p00z, p0y0)
+f3  = Triangle(px00, p0y0, px10)
+f4  = Triangle(px00, px10, p1y0)
+f5  = Triangle(px00, p1y0, p10z)
 
-f6 = Triangle(p10z, p1y0, p1y1)
-f7 = Triangle(p10z, p1y1, px01)
-f8 = Triangle(p10z, px01, p00z)
-f9 = Triangle(p00z, px01, p0y1)
+f6  = Triangle(p10z, p1y0, p1y1)
+f7  = Triangle(p10z, p1y1, px01)
+f8  = Triangle(p10z, px01, p00z)
+f9  = Triangle(p00z, px01, p0y1)
 f10 = Triangle(p00z, p0y1, p0y0)
 
 f11 = Triangle(p0y0, p0y1, p01z)
