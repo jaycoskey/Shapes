@@ -19,10 +19,3 @@ test_cube_vertex_radius  = 0.15
 
 test_icosa_edge_radius   = 0.05
 test_icosa_vertex_radius = 0.15
-
-########################################
-# UNUSED
-########################################
-# vertex_radius = 0.02
-# vertex_frequency = 4
-# icosa_vertex_radius = 0.2

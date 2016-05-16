@@ -3,7 +3,7 @@
 from math import (acos, sqrt)
 from numpy import mean
 
-from util import *  # (adjacent_pairs, eps, epsilon_threshold)
+from util import *
 
 ########################################
 # Types

@@ -4,8 +4,7 @@
 #       The components are line segments (cylinders) and circles (toruses).
 ########################################
 
-from util import adjacent_pairs
-# from geometry import *
+# from util import adjacent_pairs
 from icosahedron import *
 
 ########################################
