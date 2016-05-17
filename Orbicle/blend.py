@@ -58,7 +58,7 @@ def blender_add_cylinder(cylinder):
         , view_align=False
         , enter_editmode=False
         , location=(loc.x, loc.y, loc.z)
-        , rotation=(euler_rot.x, euler_rot.y, euler_rot.z)  # TODO: Not working yet.
+        , rotation=(euler_rot.x, euler_rot.y, euler_rot.z)
         # layers
         )
 
@@ -201,7 +201,8 @@ def test_icosa_wireframe():
                     , Cylinder(f.b, f.c, r)
                     , Cylinder(f.c, f.a, r)
                     ]
-    icosa_edgess = map(f2e, orb.icosa.faces)  # TODO: De-dupe
+    # Note: This duplicates edges.  OK, because it's only a test.
+    icosa_edgess = map(f2e, orb.icosa.faces)
     icosa_edges  = list(chain.from_iterable(icosa_edgess))
     for e in icosa_edges:
         blender_add_cylinder(e)

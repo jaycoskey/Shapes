@@ -24,6 +24,7 @@ class Orbicle(object):
     ########################################
     # Add hexgrids
     ########################################
+    # De-dupe vertices.
     def print(self):
         print('12 (smaller) vertex-centered tori')
         for t12 in self.tori12:
@@ -111,10 +112,6 @@ class Orbicle(object):
                     self.hexgrid_verts.append(v)
                 for (v1, v2) in adjacent_pairs(hexagon):
                     self.hexgrid_edges.append(Cylinder(v1, v2, hexgrid_edge_radius))
-
-            # De-dupe vertices.
-            # TODO: Add vertices in the weighted triplets
-            # TODO: Add edges connecting the weighted triplets
 
     ########################################
     # Add icosahedral-vertex-centered tori
@@ -344,20 +341,14 @@ class Orbicle(object):
                       , t11, t12, t13, t14, t15, t16, t17, t18, t19, t20
                       ]
 
-# def render_icosa_verts():
-#    for v in icosa_verts:
-#        mesh.primitive_ico_sphere_add(subdivisions=4, location=v.coordinates(), size= vertex_radius)
-
 ########################################
-# Add planar hexagons
+# Helping functions
 ########################################
 def torus20_from_points(points) -> Torus:
     return Torus(torus20_minor_radius, points)
 
-
 def weight_4_5(center):
     return lambda other: (4 / 9) * center + (5 / 9) * other
-
 
 def weighted_point(points3, weights3) -> Point:
     (p1, p2, p3) = points3
@@ -370,7 +361,6 @@ def weighted_point(points3, weights3) -> Point:
     def weighted(coords):
         return sum([w*c for (w,c) in zip(weights, coords)])
     return Point(weighted(coords_x), weighted(coords_y), weighted(coords_z))
-
 
 def weighted_torus12(center, others):
     points = list(map(weight_4_5(center), others))

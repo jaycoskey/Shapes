@@ -1,16 +1,16 @@
 #!/bin/python
 
 epsilon_threshold     = 0.0001
-scale_factor          = 2.0
+scale_factor          = 1.7
 
-hexgrid_edge_radius   = scale_factor * 0.015
-hexgrid_vertex_radius = scale_factor * 0.015
+hexgrid_edge_radius   = scale_factor * 0.03
+hexgrid_vertex_radius = scale_factor * 0.05
 
-torus_major_segments  = scale_factor * 90
-torus_minor_segments  = scale_factor * 18
+torus_major_segments  = 90
+torus_minor_segments  = 18
 
-torus12_minor_radius  = scale_factor * 0.025
-torus20_minor_radius  = scale_factor * 0.025
+torus12_minor_radius  = scale_factor * 0.04
+torus20_minor_radius  = scale_factor * 0.04
 
 ########################################
 # TEST

@@ -21,18 +21,18 @@ class Cube(object):
                      , self.v100, self.v101, self.v110, self.v111
                      ]
 
-        self.e00x = mkCyl(self.v000, self.v001)
-        self.e01x = mkCyl(self.v010, self.v011)
-        self.e10x = mkCyl(self.v100, self.v101)
-        self.e11x = mkCyl(self.v110, self.v111)
-        self.e0x0 = mkCyl(self.v000, self.v010)
-        self.e0x1 = mkCyl(self.v001, self.v011)
-        self.e1x0 = mkCyl(self.v100, self.v110)
-        self.e1x1 = mkCyl(self.v101, self.v111)
-        self.ex00 = mkCyl(self.v000, self.v100)
-        self.ex01 = mkCyl(self.v001, self.v101)
-        self.ex10 = mkCyl(self.v010, self.v110)
-        self.ex11 = mkCyl(self.v011, self.v111)
+        self.e00x = mk_cyl(self.v000, self.v001)
+        self.e01x = mk_cyl(self.v010, self.v011)
+        self.e10x = mk_cyl(self.v100, self.v101)
+        self.e11x = mk_cyl(self.v110, self.v111)
+        self.e0x0 = mk_cyl(self.v000, self.v010)
+        self.e0x1 = mk_cyl(self.v001, self.v011)
+        self.e1x0 = mk_cyl(self.v100, self.v110)
+        self.e1x1 = mk_cyl(self.v101, self.v111)
+        self.ex00 = mk_cyl(self.v000, self.v100)
+        self.ex01 = mk_cyl(self.v001, self.v101)
+        self.ex10 = mk_cyl(self.v010, self.v110)
+        self.ex11 = mk_cyl(self.v011, self.v111)
         self.edges = [ self.e00x, self.e01x, self.e10x, self.e11x
                      , self.e0x0, self.e0x1, self.e1x0, self.e1x1
                      , self.ex00, self.ex01, self.ex10, self.ex11

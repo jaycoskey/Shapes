@@ -145,7 +145,7 @@ def average_vector(vectors) -> Vector:
     (val_x, val_y, val_z) = avg(vectors)
     return Vector(val_x, val_y, val_z)
 
-def mkCyl(center1, center2):
+def mk_cyl(center1, center2):
     return Cylinder(center1, center2, r = test_cube_edge_radius)
 
 def main():
