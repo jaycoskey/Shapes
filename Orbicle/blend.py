@@ -101,15 +101,15 @@ def delete_all():  #  By Takuro Wada.  See video at https://www.blender.org/conf
 # See "makeMaterial" at
 #     https://wiki.blender.org/index.php/Dev:Py/Scripts/Cookbook/Code_snippets/Materials_and_textures
 def material_make(name, diffuse, specular, alpha):
-    mat = bpy.data.materials.new(name)
-    mat.diffuse_color = diffuse
-    mat.diffuse_shader = 'LAMBERT'
-    mat.diffuse_intensity = 1.0
-    mat.specular_color = specular
-    mat.specular_shader = 'COOKTORR'
+    mat                    = bpy.data.materials.new(name)
+    mat.diffuse_color      = diffuse
+    mat.diffuse_shader     = 'LAMBERT'
+    mat.diffuse_intensity  = 1.0
+    mat.specular_color     = specular
+    mat.specular_shader    = 'COOKTORR'
     mat.specular_intensity = 0.5
-    mat.alpha = alpha
-    mat.ambient = 1
+    mat.alpha              = alpha
+    mat.ambient            = 1
     return mat
 
 # See "setMaterial" at the URL above.
@@ -129,24 +129,41 @@ def vectors2euler(vec_ref, vec_actual):
 # TODO: Adjust thickness as needed for 3D printing
 def main():
     delete_all()
-    orb   = Orbicle()
+    orb = Orbicle()
 
-    red   = material_make('Red',   (1,0,0), (1,0,0), 1)
-    white = material_make('White', (1,1,1), (1,1,1), 1)
-    blue  = material_make('Blue',  (0,0,1), (0,0,1), 1)
+    mat_red   = material_make('Red',   (1,0,0), (1,0,0), 1)
+    mat_white = material_make('White', (1,1,1), (1,1,1), 1)
+    mat_blue  = material_make('Blue',  (0,0,1), (0,0,1), 1)
 
+    for obj in bpy.data.objects:  # vs. bpy.context.scene.objects
+        if not obj.data.materials:  # obj.type == "MESH"
+            print('Setting object material to red')
+            bpy.ops.object.mode_set(mode='OBJECT')
+            for mat_slot in obj.material_slots:
+                mat = mat_slot.material
+                mat.user_clear()
+                bpy.data.materials.remove(mat)
     for t in orb.tori12:
         blender_add_torus(t)
-        material_set(bpy.context.object, red)
+        # material_set(bpy.context.object, red)
+        # bpy.ops.object.mode_set(mode='OBJECT')
+        for obj in bpy.data.objects:
+            # material_set(bpy.context.object, mat_blue)
+            obj.data.materials.append(mat_red)
+            if len(obj.data.materials) > 0:
+                obj.data.materials[0] = mat_red
+            else:
+                obj.data.materials.append(mat_red)
+
     for t in orb.tori20:
         blender_add_torus(t)
-        material_set(bpy.context.object, blue)
+        material_set(bpy.context.object, mat_blue)
     for hv in orb.hexgrid_verts:
         blender_add_point(hexgrid_vertex_radius, hv)
-        material_set(bpy.context.object, white)
+        material_set(bpy.context.object, mat_white)
     for he in orb.hexgrid_edges:
         blender_add_cylinder(he)
-        material_set(bpy.context.object, white)
+        material_set(bpy.context.object, mat_white)
     blender_write_outfile('orbicle.stl')
 
 ########################################

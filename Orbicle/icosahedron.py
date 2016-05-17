@@ -4,16 +4,19 @@
 #       The components are line segments (cylinders) and circles (tori).
 ########################################
 from geometry import *
+from params import *
 
 ########################################
 # Constants
 ########################################
 phi = (1 + sqrt(5)) / 2  # Golden ratio ~ 1.618034
 
-
 ########################################
 # Icosahedron
 ########################################
+def scale_point(factor, point):
+    return factor * point
+
 class Icosahedron(object):
     def __init__(self):
         self.verts = [ px00, px01, px10, px11
@@ -29,20 +32,20 @@ class Icosahedron(object):
 ########################################
 # Define icosahedral vertices
 ########################################
-px00 = Point(0, -1, -phi)
-px01 = Point(0, -1,  phi)
-px10 = Point(0,  1, -phi)
-px11 = Point(0,  1,  phi)
+px00 = scale_point(scale_factor, Point(0, -1, -phi))
+px01 = scale_point(scale_factor, Point(0, -1,  phi))
+px10 = scale_point(scale_factor, Point(0,  1, -phi))
+px11 = scale_point(scale_factor, Point(0,  1,  phi))
 
-p0y0 = Point(-phi, 0, -1)
-p0y1 = Point(-phi, 0,  1)
-p1y0 = Point( phi, 0, -1)
-p1y1 = Point( phi, 0,  1)
+p0y0 = scale_point(scale_factor, Point(-phi, 0, -1))
+p0y1 = scale_point(scale_factor, Point(-phi, 0,  1))
+p1y0 = scale_point(scale_factor, Point( phi, 0, -1))
+p1y1 = scale_point(scale_factor, Point( phi, 0,  1))
 
-p00z = Point(-1, -phi, 0)
-p01z = Point(-1,  phi, 0)
-p10z = Point( 1, -phi, 0)
-p11z = Point( 1,  phi, 0)
+p00z = scale_point(scale_factor, Point(-1, -phi, 0))
+p01z = scale_point(scale_factor, Point(-1,  phi, 0))
+p10z = scale_point(scale_factor, Point( 1, -phi, 0))
+p11z = scale_point(scale_factor, Point( 1,  phi, 0))
 
 ########################################
 # Define icosahedral faces
