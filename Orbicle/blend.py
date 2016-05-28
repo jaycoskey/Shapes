@@ -172,9 +172,6 @@ def vectors2euler(vec_ref, vec_actual):
 # TODO: Dedupe and/or performing unions to optimize representation.
 # TODO: Adjust thickness as needed for 3D printing
 def main():
-    delete_all()
-    orb = Orbicle()
-
     mat_red     = material_make('Red',     (1,0,0), (1,0,0), 1)
     mat_green   = material_make('Green',   (0,1,0), (0,1,0), 1)
     mat_blue    = material_make('Blue',    (0,0,1), (0,0,1), 1)
@@ -189,22 +186,39 @@ def main():
 
     sys.stdout.flush()
 
+    # Inefficient means of putting seperate parts of the orbicle into separate STL files.
+    orb = Orbicle()
+
+    delete_all()
     for t in orb.tori12:
         blender_add_torus('tori12',          mat_blue, t);     progress()
+    progress(done=True)
+    blender_write_outfile('orbicle_tori12.stl')
+
+    delete_all()
     for t in orb.tori20:
         blender_add_torus('tori20',          mat_green, t);    progress()
+    progress(done=True)
+    blender_write_outfile('orbicle_tori20.stl')
+
+    delete_all()
     for hv in orb.hexgrid_verts:
         r = hexgrid_vertex_radius
         blender_add_point('hexgrid_vert',    mat_red, r, hv);  progress()
+    progress(done=True)
+    blender_write_outfile('orbicle_hexgrid_verts.stl')
+
+    delete_all()
     for he in orb.hexgrid_edges:
         blender_add_cylinder('hexgrid_edge', mat_pink, he);    progress()
     progress(done=True)
-    material_set_by_name('tori12',       mat_blue)
-    material_set_by_name('tori20',       mat_green)
-    material_set_by_name('hexgrid_edge', mat_pink)
-    material_set_by_name('hexgrid_vert', mat_red)
+    blender_write_outfile('orbicle_hexgrid_edges.stl')
+    # material_set_by_name('tori12',       mat_blue)
+    # material_set_by_name('tori20',       mat_green)
+    # material_set_by_name('hexgrid_edge', mat_pink)
+    # material_set_by_name('hexgrid_vert', mat_red)
 
-    blender_write_outfile('orbicle.stl')
+    # blender_write_outfile('orbicle.stl')
 
 ########################################
 # MAIN
