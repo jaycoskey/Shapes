@@ -1,9 +1,6 @@
-// POV-Ray scene description for a chess board
-// Copyright (c) 2008, by Jay M. Coskey
-// POV-Ray, v3.6
-//
-// -w320 -h240
-// -w800 -h600 +a0.3
+// POV-Ray scene description for a chess board.
+// Copyright (c) 2020 by Jay M. Coskey
+// POV-Ray 3.7
 
 global_settings { assumed_gamma 2.2 max_trace_level 5 }
 
@@ -32,16 +29,52 @@ global_settings { assumed_gamma 2.2 max_trace_level 5 }
 #declare BISHOP_CAP_HEIGHT = TORUS_R1;
 #declare PI = 3.14159265359;
 
+#declare WTexture = texture {
+        T_Silver_3B
+        pigment { quick_color red 0.95 green 0.62 }
+    }
+
+#declare BTexture = texture {
+        T_Gold_3C
+        pigment { quick_color red 0.4  green 0.2  }
+    }
+
+#declare BoardFrameTexture = texture {
+        T_Wood20
+        scale 2
+        rotate y*87
+        translate x*1
+        finish {
+            specular 1
+            roughness 0.02
+            ambient 0.35
+        }
+    }
+
+// ========================================
+// Lights & Camera
+
+light_source { <800, 600, -200> colour White }
+
 camera {
     location  <40, 30, -70>
     direction <0, 0, 2>
     up        <0, 1, 0>
     right     <4/3, 0, 0>
     look_at   <0, -1, 1>
-    aperture 0
+    aperture  0  // No blurring
 }
 
-light_source { <800, 600, -200> colour White }
+// ========================================
+// Primitive Shapes
+
+#declare Crown = union {
+    cylinder { <  TORUS_R1, 0, 0>, <  TORUS_R1, CROWN_HEIGHT, 0>, TORUS_R2 }
+    cylinder { < -TORUS_R1, 0, 0>, < -TORUS_R1, CROWN_HEIGHT, 0>, TORUS_R2 }
+    cylinder { < 0, 0,  TORUS_R1>, < 0, CROWN_HEIGHT,  TORUS_R1>, TORUS_R2 }
+    cylinder { < 0, 0, -TORUS_R1>, < 0, CROWN_HEIGHT, -TORUS_R1>, TORUS_R2 }
+    torus { TORUS_R1, TORUS_R2 translate <0, CROWN_HEIGHT, 0> }
+}
 
 #declare PawnBase =
 union {
@@ -61,7 +94,7 @@ union {
         }
         plane { -y, 0 }
     }
-    intersection { // TOP
+    intersection {  // TOP
         union {
             torus { TORUS_R - PIECE_HEAD_RADIUS, PIECE_HEAD_RADIUS }
             cylinder { <0, -PIECE_HEAD_RADIUS, 0>, <0, 0, 0>, TORUS_R1 }
@@ -72,23 +105,7 @@ union {
     cylinder { 0, y * PIECE_BASE_HEIGHT, PIECE_BASE_RADIUS }
 }
 
-#declare Pawn = union {
-    object {
-        sphere { <0, 0, 0>, PAWN_HEAD_RADIUS }
-        translate PAWN_BASE_HEIGHT * y
-    }
-    object { PawnBase }
-}
-
-#declare Crown = union {
-    cylinder { <  TORUS_R1, 0, 0>, <  TORUS_R1, CROWN_HEIGHT, 0>, TORUS_R2 }
-    cylinder { < -TORUS_R1, 0, 0>, < -TORUS_R1, CROWN_HEIGHT, 0>, TORUS_R2 }
-    cylinder { < 0, 0,  TORUS_R1>, < 0, CROWN_HEIGHT,  TORUS_R1>, TORUS_R2 }
-    cylinder { < 0, 0, -TORUS_R1>, < 0, CROWN_HEIGHT, -TORUS_R1>, TORUS_R2 }
-    torus { TORUS_R1, TORUS_R2 translate <0, CROWN_HEIGHT, 0> }
-}
-
-#declare Rook = union {
+#declare RookShape = union {
     object {
         Crown
         translate PIECE_BASE_HEIGHT * y
@@ -100,10 +117,23 @@ union {
     torus { TORUS_R1, TORUS_R2 rotate <0, 0, 90> translate <0, PIECE_BASE_HEIGHT + TORUS_R1, 0> }
 }
 
-#declare Knight = union {
+// ========================================
+// Pieces - General
+
+#declare King = union {
+    torus { TORUS_R1, TORUS_R2 rotate <0, 0, 90> translate <0, PIECE_BASE_HEIGHT + CROWN_HEIGHT, 0> }
+    torus { TORUS_R1, TORUS_R2 rotate <90, 0, 0> translate <0, PIECE_BASE_HEIGHT + CROWN_HEIGHT, 0> }
+    object { RookShape }
+}
+
+#declare Queen = union {
     object { VerticalTorus }
+    object { VerticalTorus rotate <0,  60, 0> }
+    object { VerticalTorus rotate <0, 120, 0> }
     object { PieceBase }
 }
+
+#declare Rook = object { RookShape }
 
 #declare Bishop = union {
     object {
@@ -119,107 +149,48 @@ union {
     object { PieceBase }
 }
 
-#declare Queen = union {
+#declare Knight = union {
     object { VerticalTorus }
-    object { VerticalTorus rotate <0,  60, 0> }
-    object { VerticalTorus rotate <0, 120, 0> }
     object { PieceBase }
 }
 
-#declare King = union {
-    torus { TORUS_R1, TORUS_R2 rotate <0, 0, 90> translate <0, PIECE_BASE_HEIGHT + CROWN_HEIGHT, 0> }
-    torus { TORUS_R1, TORUS_R2 rotate <90, 0, 0> translate <0, PIECE_BASE_HEIGHT + CROWN_HEIGHT, 0> }
-    object { Rook }
-}
-
-#declare WWood = texture { T_Silver_3B }
-#declare BWood = texture { T_Gold_3C }
-
-#declare WPawn = object { Pawn
-    texture {
-        WWood
-        pigment { quick_color red 0.95 green 0.62 }
+#declare Pawn = union {
+    object {
+        sphere { <0, 0, 0>, PAWN_HEAD_RADIUS }
+        translate PAWN_BASE_HEIGHT * y
     }
+    object { PawnBase }
 }
 
-#declare BPawn = object { Pawn
-    texture {
-        BWood
-        pigment { quick_color red 0.4 green 0.2 }
-    }
-}
+// ========================================
+// Pieces - per Player
 
-#declare WRook = object { Rook
-    texture {
-        WWood
-        pigment { quick_color red 0.95 green 0.62 }
-    }
-}
+#declare WKing   = object { King   texture { WTexture } }
+#declare BKing   = object { King   texture { BTexture } }
 
-#declare BRook = object { Rook
-    texture {
-        BWood
-        pigment { quick_color red 0.4 green 0.2 }
-    }
-}
+#declare WQueen  = object { Queen  texture { WTexture } }
+#declare BQueen  = object { Queen  texture { BTexture } }
 
-#declare WKnight = object { Knight
-    texture {
-        WWood
-        pigment { quick_color red 0.95 green 0.62 }
-    }
-}
+#declare WRook   = object { Rook   texture { WTexture } }
+#declare BRook   = object { Rook   texture { BTexture } }
 
-#declare BKnight = object { Knight
-    rotate 180*y
-    texture {
-        BWood
-        pigment { quick_color red 0.4 green 0.2 }
-    }
-}
-
-#declare WBishop = object { Bishop
-    texture {
-        WWood
-        pigment { quick_color red 0.95 green 0.62 }
-    }
-}
-
+#declare WBishop = object { Bishop texture { WTexture } }
 #declare BBishop = object { Bishop
     rotate 180*y
-    texture {
-        BWood
-        pigment { quick_color red 0.4 green 0.2 }
-    }
+    texture { BTexture }
 }
 
-#declare WQueen = object { Queen
-    texture {
-        WWood
-        pigment { quick_color red 0.95 green 0.62 }
-    }
+#declare WKnight = object { Knight texture { WTexture } }
+#declare BKnight = object { Knight
+    rotate 180*y
+    texture { BTexture }
 }
 
-#declare BQueen = object { Queen
-    texture {
-        BWood
-        pigment { quick_color red 0.4 green 0.2 }
-    }
-}
+#declare WPawn =   object { Pawn   texture { WTexture } }
+#declare BPawn =   object { Pawn   texture { BTexture } }
 
-#declare WKing = object { King
-    texture {
-        WWood
-        pigment { quick_color red 0.95 green 0.62 }
-    }
-}
-
-#declare BKing = object { King
-    texture {
-        BWood
-        pigment { quick_color red 0.4 green 0.2 }
-    }
-}
+// ========================================
+// Piece Collections
 
 #declare FarPawns = union {
     object { BPawn translate <-28, 0, 20> }
@@ -231,7 +202,7 @@ union {
     object { BPawn translate < 20, 0, 20> }
     object { BPawn translate < 28, 0, 20> }
 }
-
+// ----------------------------------------
 #declare FarPieces = union {
     object { FarPawns }
     object { BRook   translate <-28, 0, 28> }
@@ -243,7 +214,7 @@ union {
     object { BKnight translate < 20, 0, 28> }
     object { BRook   translate < 28, 0, 28> }
 }
-
+// ----------------------------------------
 #declare NearPawns =
 union {
     object { WPawn translate <-28, 0, -20> }
@@ -255,7 +226,7 @@ union {
     object { WPawn translate < 20, 0, -20> }
     object { WPawn translate < 28, 0, -20> }
 }
-
+// ----------------------------------------
 #declare NearPieces = union {
     object { NearPawns }
     object { WRook   translate <-28, 0, -28> }
@@ -267,14 +238,17 @@ union {
     object { WKnight translate < 20, 0, -28> }
     object { WRook   translate < 28, 0, -28> }
 }
-
+// ----------------------------------------
 #declare Pieces =
 union {
     object { NearPieces }
     object { FarPieces }
 }
 
-#declare FramePiece =
+// ========================================
+// Board Components
+
+#declare BoardFramePiece =
 intersection {
     plane { +y, -0.15 }
     plane { -y, 3 }
@@ -283,46 +257,27 @@ intersection {
     plane { < 1, 0, 1>, 0 }
 }
 
-#declare Frame =
+#declare BoardFrame =
 union {
     union {
-        object { FramePiece }
-        object { FramePiece rotate 180*y }
-        texture {
-            T_Wood20
-            scale 2
-            rotate y*87
-            translate x*1
-            finish {
-                specular 1
-                roughness 0.02
-                ambient 0.35
-            }
-        }
+        object { BoardFramePiece }
+        object { BoardFramePiece rotate 180*y }
+	texture { BoardFrameTexture }
     }
-
     union {
-        object { FramePiece rotate -90*y }
-        object { FramePiece rotate  90*y }
-        texture {
-            T_Wood20
-            scale 2
-            rotate y*2
-            finish {
-                specular 1
-                roughness 0.02
-                ambient 0.35
-            }
-        }
+        object { BoardFramePiece rotate -90*y }
+        object { BoardFramePiece rotate  90*y }
+	texture { BoardFrameTexture }
     }
 }
+
 #declare Board =
     box { <-32, -1, -32> <32, 0, 32>
         texture {
             tiles {
                 texture {
                     pigment {
-                        // White marble
+                        // Light marble
                         wrinkles
                         turbulence 1.0
                         colour_map {
@@ -341,11 +296,11 @@ union {
                         roughness 0.02
                         reflection 0.25
                     }
-                }
+                }  // texture
                 tile2
                 texture {
                     pigment {
-                        // Dark granite
+			// Dark granite
                         granite
                         scale <0.3, 1, 0.3>
                         colour_map {
@@ -359,13 +314,16 @@ union {
                         reflection 0.25
                     }
                 }
-            }
+            }  // tiles
             scale <8, 1, 8>
-        }
+        }  // texture
     }
 
+// ========================================
+// Final Scene Description
 
 object { NearPieces }
 object { FarPieces }
 object { Board }
-object { Frame }
+object { BoardFrame }
+
