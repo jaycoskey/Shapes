@@ -1,9 +1,15 @@
 #!/usr/local/bin/python3.7
 
+import os
+import sys
+
+
+sys.path.append(os.path.dirname(__file__))
 from geometry import Cylinder, Point3, Vec3
+from scene import Scene
 
 
-class Cube(object):
+class Cube():
     def __init__(self):
         self.v000 = Point3(0,0,0)
         self.v001 = Point3(0,0,1)
