@@ -1,19 +1,19 @@
 #!/usr/local/bin/python3.7
-########################################
+
 # Goal: Visualize then 3D-print a particular sphere-like 3D shape.
 #       The components are line segments (cylinders) and circles (tori).
-########################################
+
 from geometry import *
-from params import *
+from config import *
 
-########################################
+# ========================================
 # Constants
-########################################
-phi = (1 + sqrt(5)) / 2  # Golden ratio ~ 1.618034
 
-########################################
+phi = (1 + sqrt(5)) / 2  # Golden ratio ~ 1.618034. scipy.constants.golden
+
+# ========================================
 # Icosahedron
-########################################
+
 def scale_point(factor, point):
     return factor * point
 
@@ -29,27 +29,27 @@ class Icosahedron(object):
                      , f16, f17, f18, f19, f20
                      ]
 
-########################################
+# ========================================
 # Define icosahedral vertices
-########################################
-px00 = scale_point(scale_factor, Point(0, -1, -phi))
-px01 = scale_point(scale_factor, Point(0, -1,  phi))
-px10 = scale_point(scale_factor, Point(0,  1, -phi))
-px11 = scale_point(scale_factor, Point(0,  1,  phi))
 
-p0y0 = scale_point(scale_factor, Point(-phi, 0, -1))
-p0y1 = scale_point(scale_factor, Point(-phi, 0,  1))
-p1y0 = scale_point(scale_factor, Point( phi, 0, -1))
-p1y1 = scale_point(scale_factor, Point( phi, 0,  1))
+px00 = scale_point(Config.scale_factor, Point3(0, -1, -phi))
+px01 = scale_point(Config.scale_factor, Point3(0, -1,  phi))
+px10 = scale_point(Config.scale_factor, Point3(0,  1, -phi))
+px11 = scale_point(Config.scale_factor, Point3(0,  1,  phi))
 
-p00z = scale_point(scale_factor, Point(-1, -phi, 0))
-p01z = scale_point(scale_factor, Point(-1,  phi, 0))
-p10z = scale_point(scale_factor, Point( 1, -phi, 0))
-p11z = scale_point(scale_factor, Point( 1,  phi, 0))
+p0y0 = scale_point(Config.scale_factor, Point3(-phi, 0, -1))
+p0y1 = scale_point(Config.scale_factor, Point3(-phi, 0,  1))
+p1y0 = scale_point(Config.scale_factor, Point3( phi, 0, -1))
+p1y1 = scale_point(Config.scale_factor, Point3( phi, 0,  1))
 
-########################################
+p00z = scale_point(Config.scale_factor, Point3(-1, -phi, 0))
+p01z = scale_point(Config.scale_factor, Point3(-1,  phi, 0))
+p10z = scale_point(Config.scale_factor, Point3( 1, -phi, 0))
+p11z = scale_point(Config.scale_factor, Point3( 1,  phi, 0))
+
+# ========================================
 # Define icosahedral faces
-########################################
+
 # TODO: Refactor toward DRY
 f1  = Triangle(px00, p10z, p00z)
 f2  = Triangle(px00, p00z, p0y0)
@@ -74,10 +74,3 @@ f17 = Triangle(p1y1, px11, px01)
 f18 = Triangle(px01, px11, p0y1)
 f19 = Triangle(p0y1, px11, p01z)
 f20 = Triangle(p01z, px11, p11z)
-
-
-def main():
-    print('Hello, world!')
-
-if __name__ == '__main__':
-    main()
