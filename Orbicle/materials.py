@@ -1,3 +1,5 @@
+# Note: This file is currently unused.
+
 # mat_red     = material_make('Red',     (1,0,0), (1,0,0), 1)
 # mat_green   = material_make('Green',   (0,1,0), (0,1,0), 1)
 # mat_blue    = material_make('Blue',    (0,0,1), (0,0,1), 1)

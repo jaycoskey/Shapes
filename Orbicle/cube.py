@@ -1,4 +1,5 @@
 #!/usr/local/bin/python3.7
+# Note: This file is currently unused.
 
 import os
 import sys
