@@ -1,14 +1,14 @@
-#!/bin/python
+#!/usr/local/bin/python3.7
 
-import sys
 from itertools import chain
+from mathutils import Quaternion
+import sys
 
 # Blender Python
 import bpy
-# import bpy.ops.mesh
-from mathutils import Quaternion
 
 # Orbicle
+sys.path.append('.')
 from cube import *
 from orbicle import *
 
@@ -27,8 +27,8 @@ from orbicle import *
 def blender_add_point(r, point):
     bpy.ops.mesh.primitive_ico_sphere_add(
         subdivisions=3
-        , size=r
-        , view_align=False
+        , radius=r
+        , align='WORLD'
         , enter_editmode=False
         , location=(point.x, point.y, point.z)
         # rotation=(0.0, 0.0, 0.0)  # Not needed
@@ -55,7 +55,7 @@ def blender_add_cylinder(cylinder):
         , radius         = cylinder.r
         , depth          = (cylinder.center2 - cylinder.center1).norm
         # , cap_ends=False
-        , view_align     = False
+        , align = 'WORLD'
         , enter_editmode = False
         , location       = (loc.x, loc.y, loc.z)
         , rotation       = (euler_rot.x, euler_rot.y, euler_rot.z)
@@ -75,7 +75,7 @@ def blender_add_torus(torus):
         # , use_abso=False
         , abso_major_rad=1.0  # TODO: ???
         , abso_minor_rad=0.5  # TODO: ???
-        , view_align=False
+        , align='WORLD'
         , location=(torus.center.x, torus.center.y, torus.center.z)
         , rotation=(euler_rot.x, euler_rot.y, euler_rot.z)
         )
@@ -89,12 +89,10 @@ def blender_write_outfile(filepath):
         )
 
 def delete_all():  #  By Takuro Wada.  See video at https://www.blender.org/conference/2015/presentations/157
-    for item in bpy.context.scene.objects:
-        bpy.context.scene.objects.unlink(item)
     for item in bpy.data.objects:
-        bpy.data.objects.remove(item)
+        bpy.data.objects.remove(item, do_unlink=True)
     for item in bpy.data.meshes:
-        bpy.data.meshes.remove(item)
+        bpy.data.meshes.remove(item, do_unlink=True)
 
 def progress(done=False):
     if done:

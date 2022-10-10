@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/local/bin/python3.7
 
 epsilon_threshold     = 0.0001
 scale_factor          = 1.7

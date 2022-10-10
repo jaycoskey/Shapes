@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/local/bin/python3.7
 
 from math import fabs
 

@@ -1,10 +1,12 @@
-#!/bin/python
+#!/usr/local/bin/python3.7
 ########################################
 # Goal: Visualize then 3D-print a particular sphere-like 3D shape.
 #       The components are line segments (cylinders) and circles (toruses).
 ########################################
 
-# from util import adjacent_pairs
+import os
+import sys
+sys.path.append(os.path.dirname(__file__))
 from icosahedron import *
 
 ########################################
